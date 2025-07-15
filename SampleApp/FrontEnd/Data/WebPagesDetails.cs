@@ -4,7 +4,7 @@ namespace FrontEnd.Data;
 
 public class WebPagesDetails
 {
-    public bool Select { get; set; }
+    public bool FileDownloaded { get; set; }
 
     public string? WebPageTitle { get; set; }
 

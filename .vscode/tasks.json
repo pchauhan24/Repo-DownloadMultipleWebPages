@@ -86,6 +86,20 @@
             "file": "/workspaces/dotnet-codespaces/SampleApp/FrontEnd/FrontEnd.csproj",
             "problemMatcher": [],
             "label": "dotnet: watch FrontEnd"
+        },
+        {
+            "type": "dotnet",
+            "task": "build",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "dotnet: build"
+        },
+        {
+            "type": "dotnet",
+            "task": "clean",
+            "group": "clean",
+            "problemMatcher": [],
+            "label": "dotnet: clean"
         }
     ]
 }

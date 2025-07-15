@@ -18,27 +18,31 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Select</th>
+                <th>File downloaded</th>
                 <th>Web Page Title</th>
                 <th>URL</th>
                 <th>Web Page String</th>
             </tr>
         </thead>
         <tbody>
-            @* @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            } *@
-
              @foreach (var webPageDetail in webPagesDetails)
             {
                 <tr>
-                    <td>@webPageDetail.Select</td>
+                    <td>
+                          @if (@webPageDetail.WebPageString == "File download Completed!") 
+                            {
+                                <span>true</span>; 
+                            } 
+                            else if (@webPageDetail.WebPageString == "File download Failed") 
+                            {
+                                <span>false</span>; 
+                            } 
+                            else 
+                            {
+                                <span>false</span>; 
+                            }
+                    </td>
+
                     <td>@webPageDetail.WebPageTitle</td>
                     <td>@webPageDetail.WebPageURL</td>
                     <td>@webPageDetail.WebPageString</td>
@@ -49,7 +53,6 @@ else
 }
 
 @code {
-    //private WeatherForecast[]? forecasts;
     private WebPagesDetails[]? webPagesDetails;
 
     protected override async Task OnInitializedAsync()
@@ -58,18 +61,18 @@ else
                 new WebPagesDetails(){
                     WebPageTitle = "VC-WeatherData", 
                     WebPageURL = "https://www.visualcrossing.com/weather-data/", 
-                    WebPageString = await WebPagesDetailClient.GetWebPageStringAsync("https://www.visualcrossing.com/weather-data/")
+                    WebPageString = await WebPagesDetailClient.GetWebPageStringAsync("https://www.visualcrossing.com/weather-data/", "VC-WeatherData")
                     },
                 new WebPagesDetails(){
-                    WebPageTitle = "VC - Pricing", 
+                    WebPageTitle = "VC-Pricing", 
                     WebPageURL = "https://www.visualcrossing.com/weather-data-editions/", 
-                    WebPageString = await WebPagesDetailClient.GetWebPageStringAsync("https://www.visualcrossing.com/weather-data-editions/")
+                    WebPageString = await WebPagesDetailClient.GetWebPageStringAsync("https://www.visualcrossing.com/weather-data-editions/", "VC-Pricing")
                     },
 
                 new WebPagesDetails(){
-                    WebPageTitle = "VC - Query Builder", 
+                    WebPageTitle = "VC-QueryBuilder", 
                     WebPageURL = "https://www.visualcrossing.com/weather-query-builder/", 
-                    WebPageString = await WebPagesDetailClient.GetWebPageStringAsync("https://www.visualcrossing.com/weather-query-builder/")
+                    WebPageString = await WebPagesDetailClient.GetWebPageStringAsync("https://www.visualcrossing.com/weather-query-builder/", "VC-QueryBuilder")
                 }            
             }.ToArray();
     }

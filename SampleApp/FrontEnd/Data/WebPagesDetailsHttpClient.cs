@@ -13,11 +13,7 @@ public class WebPagesDetailsHttpClient
         _logger = logger;
     }
 
-    // public async Task<WebPagesDetails[]> GetForecastAsync(DateTime? startDate)
-    //     => await _httpClient.GetFromJsonAsync<WebPagesDetails[]>($"WeatherForecast?startDate={startDate}") ?? [];
-
-
-    public async Task<string> GetWebPageStringAsync(string webPageURL)
+    public async Task<string> GetWebPageStringAsync(string webPageURL, string fileName)
     {
         HttpResponseMessage response = await _httpClient.GetAsync(webPageURL);
         string output;
@@ -29,9 +25,9 @@ public class WebPagesDetailsHttpClient
             // Get the data
             byte[] data = await response.Content.ReadAsByteArrayAsync();
             // Save it to a file
-            //FileStream fStream = File.Create(webPageURL + ".html");
-            //await fStream.WriteAsync(data, 0, data.Length);
-            //fStream.Close();
+            FileStream fileStream = File.Create("DownloadedFiles/" + fileName + ".html");
+            await fileStream.WriteAsync(data, 0, data.Length);
+            fileStream.Close();
 
             Console.WriteLine("File download Completed!");
 
