@@ -72,6 +72,20 @@
                 "${workspaceFolder}/SampleApp/BackEnd/BackEnd.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "dotnet",
+            "task": "build",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "dotnet: build"
+        },
+        {
+            "type": "dotnet",
+            "task": "watch FrontEnd",
+            "file": "/workspaces/dotnet-codespaces/SampleApp/FrontEnd/FrontEnd.csproj",
+            "problemMatcher": [],
+            "label": "dotnet: watch FrontEnd"
         }
     ]
 }
